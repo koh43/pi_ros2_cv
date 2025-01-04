@@ -58,7 +58,7 @@ sudo apt install -y libboost-program-options-dev libdrm-dev libexif-dev
 sudo apt install -y libavcodec-dev libavdevice-dev
 
 cd 
-git clone https://github.com/raspberrypi/rpicam-apps.git --branch v1.4.3
+git clone https://github.com/raspberrypi/rpicam-apps.git
 cd rpicam-apps
 
 # For Desktop OS
@@ -69,7 +69,6 @@ meson setup build -Denable_libav=disabled -Denable_drm=enabled -Denable_egl=disa
 
 meson compile -C build # use -j1 on Raspberry Pi 3 or earlier devices
 meson install -C build
-sudo ldconfig # This is only necessary on the first build
 ```
 
 ### Build kms++
