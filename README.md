@@ -13,6 +13,13 @@ following the original instructions for Ubuntu.
 
 Here is a modified version if you install it in Ubuntu 24.04 LTS.
 
+### Remove preinstalled packages
+Check if there are packages related to older versions of libcamera:
+```
+dpkg -l | grep libcamera
+```
+Remove all the old packages.
+
 ### Setup Python Virtual Environment (venv)
 ```
 mkdir -p venv
@@ -24,8 +31,8 @@ pip install meson
 
 ### Build libcamera
 ```
-sudo apt install -y libcamera-dev libepoxy-dev libjpeg-dev libtiff5-dev libpng-dev python3 python3-dev
-sudo apt install -y libcamera-tools g++
+sudo apt install -y libepoxy-dev libjpeg-dev libpng-dev python3 python3-dev
+sudo apt install -y g++
 sudo apt install -y python3-pip git python3-jinja2
 sudo apt install -y libboost-dev
 sudo apt install -y libgnutls28-dev openssl libtiff5-dev pybind11-dev liblttng-ust-dev
@@ -34,8 +41,9 @@ sudo apt install -y cmake ninja-build
 sudo apt install -y python3-yaml python3-ply python3-pip libyaml-dev
 sudo apt install -y libglib2.0-dev libgstreamer-plugins-base1.0-dev
 
-cd 
-git clone https://github.com/raspberrypi/libcamera.git
+cd
+# Forked version of the official lib (Fixed some minor issues)
+git clone https://github.com/koh43/libcamera.git
 cd libcamera
 
 meson setup build --buildtype=release -Dpipelines=rpi/vc4,rpi/pisp -Dipas=rpi/vc4,rpi/pisp -Dv4l2=true -Dgstreamer=enabled -Dtest=false -Dlc-compliance=disabled -Dcam=disabled -Dqcam=disabled -Ddocumentation=disabled -Dpycamera=enabled
@@ -78,7 +86,7 @@ sudo ninja -C build install
 
 ### Install Picamera2
 ```
-pip install rpi-libcamera
+pip install rpi-libcamera -C setup-args="-Dversion=unknown" -C setup-args="-Drepository=https://github.com/koh43/libcamera.git" -C setup-args="-Drevision=main"
 pip install rpi-kms picamera2
 ```
 
