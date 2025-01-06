@@ -1,4 +1,5 @@
 # Raspberry Pi + ROS2 + OpenCV Applications
+Tested on a Raspberry Pi 4B (4GB) with Ubuntu 24.04 LTS.
 
 ## Requirements
 After trying different methods to somehow use Picamera2, OpenCV, and ROS2 in a single environment,
