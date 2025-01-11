@@ -25,7 +25,9 @@ setup(
     entry_points={
         'console_scripts': [
             # picam
-            'pub_picam_raw = pi_ros2_cv.picam.pub_picam_raw:main',
+            'pub_picam_raw  = pi_ros2_cv.picam.pub_picam_raw:main',
+            # misc
+            'image_view     = pi_ros2_cv.misc.image_view:main',
         ],
     },
 )
