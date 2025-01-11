@@ -21,10 +21,11 @@ setup(
     maintainer='koh',
     maintainer_email='sktlgt93@gmail.com',
     description='ROS2 Package for Raspberry Pi Camera Modules using OpenCV',
-    license='TODO: License declaration',
+    license='MIT License',
     entry_points={
         'console_scripts': [
-            
+            # picam
+            'pub_picam_raw = pi_ros2_cv.picam.pub_picam_raw:main',
         ],
     },
 )

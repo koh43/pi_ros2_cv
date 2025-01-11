@@ -5,7 +5,7 @@
   <version>0.0.0</version>
   <description>ROS2 Package for Raspberry Pi Camera Modules using OpenCV</description>
   <maintainer email="sktlgt93@gmail.com">koh</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT License</license>
 
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
