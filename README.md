@@ -24,8 +24,10 @@ Remove all the old packages.
 ### Setup Python Virtual Environment (venv)
 ```
 mkdir -p venv
-python3 -m venv --system-site-packages venv/my_venv
-source venv/my_venv/bin/activate
+python3 -m venv --system-site-packages ~/pi_ros2_ws/pi_ros2_venv
+source ~/pi_ros2_ws/pi_ros2_venv/bin/activate
+# For ROS2 builds
+touch ~/pi_ros2_ws/pi_ros2_venv/COLCON_IGNORE
 # The apt version is outdated. The latest version is required to be installed through pip.
 pip install meson
 ```
