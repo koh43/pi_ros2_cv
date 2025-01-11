@@ -4,6 +4,7 @@ def picam_init(params):
     cam = Picamera2()
     cam.configure(
         cam.create_video_configuration(
+            raw=params['raw_config'],
             main=params['main_config']
         )
     )

@@ -4,7 +4,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import CompressedImage
 
 from cv_bridge import CvBridge
-from utils import cam_utils, picam_utils, ros2_utils
+from utils import picam_utils, ros2_utils
 
 class PUB_PICAM_RAW(Node):
     def __init__(self, params):
@@ -21,6 +21,7 @@ class PUB_PICAM_RAW(Node):
 
     def callback(self):
         color = self.camera.capture_array('main')
+        # ros2_utils.loginfo(self, f"Image size: {color.shape}")
         color_msg = self.br.cv2_to_compressed_imgmsg(color)
         color_msg.header.frame_id = self.frame_id
         color_msg.header.stamp    = ros2_utils.now(self)
