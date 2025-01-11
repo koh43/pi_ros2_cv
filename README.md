@@ -9,6 +9,7 @@ following the original instructions for Ubuntu.
 ## Reference
 - Official instructions for building [libcamera](https://www.raspberrypi.com/documentation/computers/camera_software.html#building-libcamera), [rpicam-apps](https://www.raspberrypi.com/documentation/computers/camera_software.html#building-rpicam-apps), [kms++](https://github.com/tomba/kmsxx?tab=readme-ov-file#build-instructions), and installation steps for [Picamera2](https://github.com/raspberrypi/picamera2?tab=readme-ov-file#installation-using-pip).
 - Well-organized full instruction is available at this [forum](https://github.com/raspberrypi/picamera2/issues/563#issuecomment-1981658308).
+- This [answer](https://github.com/raspberrypi/rpicam-apps/issues/218#issuecomment-1020738780) solves sudo privilege issues accessing the Raspberry Pi camera modules in Ubuntu.
 
 ## Installation Steps
 
@@ -21,11 +22,28 @@ dpkg -l | grep libcamera
 ```
 Remove all the old packages.
 
+### Resolve sudo privilege for Raspberry Pi Camera Modules in Ubuntu
+
+First, create a rule with
+```
+sudo nano /etc/udev/rules.d/raspberrypi.rules
+```
+Then add the following line to the rule
+```
+SUBSYSTEM=="dma_heap", GROUP="video", MODE="0660"
+```
+Finally, reboot the Pi
+```
+sudo reboot
+```
+
 ### Setup Python Virtual Environment (venv)
 ```
 mkdir -p venv
-python3 -m venv --system-site-packages venv/my_venv
-source venv/my_venv/bin/activate
+python3 -m venv --system-site-packages ~/pi_ros2_ws/pi_ros2_venv
+source ~/pi_ros2_ws/pi_ros2_venv/bin/activate
+# For ROS2 builds
+touch ~/pi_ros2_ws/pi_ros2_venv/COLCON_IGNORE
 # The apt version is outdated. The latest version is required to be installed through pip.
 pip install meson
 ```
