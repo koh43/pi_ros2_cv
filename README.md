@@ -39,7 +39,7 @@ sudo reboot
 
 ### Setup Python Virtual Environment (venv)
 ```
-mkdir -p venv
+mkdir -p ~/pi_ros2_ws/src
 python3 -m venv --system-site-packages ~/pi_ros2_ws/pi_ros2_venv
 source ~/pi_ros2_ws/pi_ros2_venv/bin/activate
 # For ROS2 builds
